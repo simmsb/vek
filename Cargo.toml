@@ -1,25 +1,27 @@
 [package]
 version = "0.15.8" # remember to update html_root_url in src/lib.rs
-authors = ["Yoan Lecoq <yoanlecoq.io@gmail.com>", "Joshua Barretto <joshua.s.barretto@gmail.com>", "Sunjay Varma <varma.sunjay@gmail.com>", "timokoesters <timo@koesters.xyz>", "Imbris <imbrisf@gmail.com>"]
+authors = [
+  "Yoan Lecoq <yoanlecoq.io@gmail.com>",
+  "Joshua Barretto <joshua.s.barretto@gmail.com>",
+  "Sunjay Varma <varma.sunjay@gmail.com>",
+  "timokoesters <timo@koesters.xyz>",
+  "Imbris <imbrisf@gmail.com>",
+]
 description = "Generic 2D-3D math swiss army knife for game engines, with SIMD support and focus on convenience."
 documentation = "https://docs.rs/vek"
 keywords = ["vector", "matrix", "simd", "quaternion", "bezier"]
-categories = [ "algorithms", "data-structures", "no-std", "science" ]
+categories = ["algorithms", "data-structures", "no-std", "science"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/yoanlcq/vek"
 name = "vek"
 build = "build.rs"
-exclude = [
-    "ci/*",
-    "appveyor.yml",
-    ".travis.yml",
-]
+exclude = ["ci/*", "appveyor.yml", ".travis.yml"]
 edition = "2018"
 
 [badges]
 travis-ci = { repository = "yoanlcq/vek" }
-appveyor  = { repository = "yoanlcq/vek" }
+appveyor = { repository = "yoanlcq/vek" }
 maintenance = { status = "experimental" }
 
 [features]
@@ -48,17 +50,23 @@ repr_simd = []
 platform_intrinsics = []
 std = ["num-traits/std", "serde/std"]
 libm = ["num-traits/libm"]
+micromath = ["num-traits/micromath"]
 
 [build-dependencies]
 rustc_version = "0.4"
 
 [dependencies]
 approx = { version = "0.5.0", default-features = false }
-num-traits = { version = "0.2.14", default-features = false }
+num-traits = { git = "https://github.com/simmsb/num-traits", default-features = false }
 num-integer = { version = "0.1.44", default-features = false }
 static_assertions = "1.1.0"
 image = { version = "0.23", optional = true, default-features = false }
-serde = { version = "1.0.105", optional = true, default-features = false, features = ["derive"] }
+serde = { version = "1.0.105", optional = true, default-features = false, features = [
+  "derive",
+] }
 mint = { version = "0.5.4", optional = true }
 bytemuck = { version = "1.7.2", optional = true }
 # clippy = { version = "0.0.166", optional = true }
+
+[patch.crates-io]
+num-traits = { git = "https://github.com/simmsb/num-traits" }
